@@ -6,8 +6,8 @@
 #include "pros/motor_group.hpp"
 
 // drivetrain motors
-pros::MotorGroup left_motors({-1, 2, -3}, pros::MotorGearset::blue);
-pros::MotorGroup right_motors({4, -5, 6}, pros::MotorGearset::blue);
+pros::MotorGroup left_motors({-13, 12, -11}, pros::MotorGearset::blue);
+pros::MotorGroup right_motors({18, -19, 20}, pros::MotorGearset::blue);
 
 // instantiating drivetrain object with previous motors and other measurements
 lemlib::Drivetrain drivetrain(&left_motors, // left motors
@@ -22,9 +22,9 @@ lemlib::Drivetrain drivetrain(&left_motors, // left motors
 pros::Imu imu(10);
 
 // rotational sensors for tracking wheels
-pros::Rotation left_vertical(-7); // offset -2.248 in
-pros::Rotation right_vertical(8); // offset 2.333 in
-pros::Rotation horizontal(-9);  // offset -4.243 in
+pros::Rotation left_vertical(-14); // offset -2.248 in
+pros::Rotation right_vertical(17); // offset 2.333 in
+pros::Rotation horizontal(-15);  // offset -4.243 in
 
 // instantiating tracking wheel objects with previous sensors, wheel diameters, and offsets
 // for vertical tracking wheels: negative = left, positive = right
@@ -73,3 +73,5 @@ lemlib::Chassis chassis(drivetrain, // drivetrain settings
 
 // rest of the motors on the robot
 
+pros::Motor intake_top(1, pros::MotorGearset::blue);
+pros::Motor intake_bottom(-11, pros::MotorGearset::blue);

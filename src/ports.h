@@ -36,4 +36,5 @@ extern lemlib::ControllerSettings angular_controller;
 extern lemlib::Chassis chassis;
 
 // other motor objects
-
+extern pros::Motor intake_top;
+extern pros::Motor intake_bottom;

@@ -3,6 +3,7 @@
 #include "ports.h"
 #include "pros/misc.h"
 #include "pros/misc.hpp"
+#include "helpers.cpp" // IWYU pragma: keep
 
 /**
  * A callback function for LLEMU's center button.
@@ -82,6 +83,8 @@ void opcontrol() {
 	left_motors.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	right_motors.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
+	print_tracking_wheels();
+
 	double deadzone = 7.5; // deadzone for joystick input
 
 	while (true) {
@@ -96,6 +99,19 @@ void opcontrol() {
         }
 
 		// other motor actions soon
+
+		if (controller.get_digital_new_press(DIGITAL_R1)) {
+			if (controller.get_digital_new_press(DIGITAL_R2)) {
+				intake_top.move(-127);
+				intake_bottom.move(127);
+			} else {
+				intake_top.move(127);
+				intake_bottom.move(127);
+			}
+		} else if (controller.get_digital_new_release(DIGITAL_R1) || controller.get_digital_new_release(DIGITAL_R2)) {
+			intake_top.brake();
+			intake_bottom.brake();
+		}
 
 		pros::delay(20);
 	}
